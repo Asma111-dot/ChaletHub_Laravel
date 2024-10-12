@@ -26,6 +26,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'type',
+        'phone',
         'password',
     ];
 
@@ -61,5 +63,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function chalet()
+    {
+        return $this->hasMany(Chalet::class);
+    }
+
+    public function user_details()
+    {
+        return $this->hasOne(UserDetails::class, 'user_id');
     }
 }
